@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="row h_44 txt_cw ts_14 linear_tit_back bar">
+    <view class="mar_l_20" bindtap="onRedirectUrl" data-url="../select_city/select_city">{{city}}
+      <image class="img1 mar_l_5" src="/images/img_01-min.png" alt="" />
+    </view>
+    <view class="tit_back" bindtap='searchlink'>
+      <image class="img2 mar_r_5" src="/images/img_02-min.png" alt="" /> 目的地 / 关键词</view>
+    <image bindtap='close' class="img3 mar_r_20" src="/images/logo(96x96).png" />
+  </view>
+</view>
+<view>
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="unique">
+      <swiper-item>
+        <image src="{{item.thumb}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!--导航模块-->
+<view>
+  <view class="row_wrap pad_l_10 pad_r_10  ts_12 b_w pad_b_10">
+    <block wx:for="{{imgUrls1}}" wx:for-item="item" wx:key="unique">
+      <image bindtap="onRedirectUrl" data-url="{{item.url}}" class="index_tit" src="{{item.thumb}}" wx:if="{{item.thumb}}" />
+    </block>
+  </view>
+</view>
+<!-- 内容模块 -->
+<view class="b_w ts_15 mar_t_10" id="txt_tit">
+  <view class="row pad_l_20 pad_r_20 h_41">
+    <view class="txt_c1 row">
+      <image class='iocn1' src='/images/img_36.png'></image>
+      <span class="">猜你想去</span>
+    </view>
+    <view bindtap="toSearch" class="ts_12 pad_r_5">更多 ></view>
+  </view>
+</view>
+<!--文字-->
+<view style="" id='tit_fix'>
+  <view class="{{tit_fix}}" style=''>
+    <view class=" mar_l_20 mar_r_20 view_active1">
+      <span class="{{curHdIndex==1?'active':'active_before'}}" bindtap="action_tit" id="1">推荐</span>
+      <span class="{{curHdIndex==2?'active':'active_before'}}" bindtap="action_tit" id="2">出境游</span>
+      <span class="{{curHdIndex==3?'active':'active_before'}}" bindtap="action_tit" id="3">国内游</span>
+      <span class="{{curHdIndex==4?'active':'active_before'}}" bindtap="action_tit" id="4">周边游</span>
+      <span class="{{curHdIndex==5?'active':'active_before'}}" bindtap="action_tit" id="5">主题游</span>
+    </view>
+  </view>
+</view>
+<!--第一个内容区容器-->
+<view id="recommend" class="scroll-view-item is_recommend">
+  <image class="banner_image mar_t_5" src="/images/tuijian.jpg" bindtap="tabs" />
+  <view class="mar_t_5 mar_b_5 pad_l_25 pad_r_25">
+    <view class="row_wrap">
+      <block wx:for="{{dt1}}" wx:key="unique" wx:for-item="item">
+        <view class="col items mar_b_10" bindtap='tolink'>
+          <view class="rel">
+            <image class="product_image" bindtap='go_xq'  id='{{item.id}}' src="{{item.thumb}}" wx:if="{{item.thumb}}" />
+          </view>
+          <span class="mar_t_5 txt_c2 as_fs pad_l_5 pad_r_5 h_66">{{item.title}}</span>
+          <view class="row widths mar_t_5">
+            <view class="ts_12 txt_c1">￥
+              <span class="ts_16">{{item.price}}</span> 起</view>
+            <span class="txt_c3 pad_r_5">好评率 100%</span>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
